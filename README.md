@@ -27,37 +27,35 @@ Ejecute el siguiente comando en su terminal para instalar las librerías necesar
 ```bash
 pip install pandas psycopg2-binary
 ```
-3. Ejecución del Script
-El script importar.py realiza las siguientes acciones de forma automática:
+### 3. Ejecución del Script
+El script `importar.py` realiza las siguientes acciones de forma automática:
 
-Lee el archivo listado.csv usando codificación latin1.
+* **Lectura de datos:** Carga el archivo `listado.csv` utilizando la codificación `latin1` para procesar correctamente caracteres especiales.
+* **Conexión a DB:** Establece comunicación con el servidor PostgreSQL (Base de datos: `postgres`).
+* **Gestión de Tablas:** Ejecuta la sentencia `CREATE TABLE IF NOT EXISTS` para preparar la tabla `import_centros`.
+* **Carga de registros:** Recorre el DataFrame de Pandas e inserta los datos fila por fila mediante el método `iloc`.
+* **Persistencia:** Ejecuta un `commit()` final únicamente si no han ocurrido errores durante el proceso.
 
-Conecta con la base de datos postgres.
-
-Crea la tabla import_centros si no existe previamente.
-
-Recorre el archivo e inserta los registros fila por fila.
-
-Realiza un commit() final para asegurar la persistencia de los datos.
-
-Para lanzarlo:
-
-Bash
+Para lanzarlo, ejecuta en la terminal:
+```bash
 python importar.py
-📊 Verificación de Resultados
+```
+### 📊 Verificación de Resultados
 A continuación se adjunta la captura de pantalla que demuestra:
 
-El mensaje de éxito en la terminal de VS Code.
+* **Éxito en la ejecución:** El mensaje de confirmación en la terminal de VS Code.
+* **Persistencia en DB:** La consulta SQL en **pgAdmin** mostrando los datos cargados en la tabla `import_centros`.
+* **Verificación de autoría:** La barra de tareas y el reloj del sistema visibles para validar la realización de la práctica.
 
-La consulta SQL en pgAdmin mostrando los datos cargados en la tabla import_centros.
+<img width="1050" height="537" alt="Captura de pantalla 2026-02-06 123415" src="https://github.com/user-attachments/assets/05bf0a59-8a88-4a99-a938-c75d0a945828" />
 
-La barra de tareas/reloj del sistema para verificar la autoría.
 
-AQUÍ DEBES PEGAR TU CAPTURA DE PANTALLA
+<img width="1365" height="767" alt="Captura de pantalla 2026-02-06 123915" src="https://github.com/user-attachments/assets/45b37641-ad6a-4267-a2fd-b4e16e02cc1e" />
 
-📂 Estructura del Proyecto
-importar.py: Código fuente del proceso ETL.
 
-listado.csv: Fuente de datos original.
+---
 
-README.md: Documentación del ejercicio.
+### 📂 Estructura del Proyecto
+* **`importar.py`**: Código fuente del proceso ETL (Extracción, Transformación y Carga).
+* **`listado.csv`**: Fuente de datos original con el listado de centros.
+* **`README.md`**: Documentación detallada del ejercicio y guía de ejecución.
