@@ -1,61 +1,62 @@
-Automatización de Datos en Odoo con Python (Proceso ETL)
-Este proyecto consiste en el desarrollo de un script en Python diseñado para realizar un proceso de ETL (Extracción, Transformación y Carga). El objetivo es automatizar la migración de datos desde un archivo CSV externo (listado.csv) hacia una base de datos PostgreSQL que sustenta una instancia de Odoo corriendo en contenedores Docker.
+# 🏫 Automatización de Datos en Odoo con Python (Proceso ETL)
 
-🛠️ Requisitos Técnicos
-Python: 3.10 o superior.
+Este proyecto consiste en el desarrollo de un script en **Python** diseñado para realizar un proceso de **ETL** (Extracción, Transformación y Carga). El objetivo es automatizar la migración de datos desde un archivo CSV externo hacia una base de datos **PostgreSQL** vinculada a una instancia de **Odoo** en Docker.
 
-Infraestructura: Docker Desktop con contenedores de Odoo y PostgreSQL activos.
+---
 
-Librerías principales:
+## 🛠️ Requisitos Técnicos
 
-pandas: Para la manipulación y limpieza de datos.
+* **Lenguaje:** Python 3.10+
+* **Infraestructura:** Docker Desktop (Contenedores de Odoo y DB activos).
+* **Librerías Obligatorias:**
+  * `pandas`: Para la manipulación y limpieza de datos.
+  * `psycopg2-binary`: Para la conexión y ejecución de sentencias SQL en PostgreSQL.
 
-psycopg2-binary: Para la gestión de la conexión con PostgreSQL.
+---
 
-🚀 Procedimiento de Configuración
-Sigue estos pasos para replicar el entorno y ejecutar la carga de datos:
+## 🚀 Procedimiento de Configuración y Ejecución
 
-1. Preparación del Entorno Docker
-Asegúrate de que tus contenedores de Odoo y la base de datos están operativos. Puedes verificarlo con:
+### 1. Preparación del Entorno
+Asegúrese de que el entorno Docker esté corriendo. El script utiliza las credenciales por defecto:
+* **Host:** `localhost`
+* **Puerto:** `5432`
+* **Usuario/Password:** `odoo` / `odoo`
 
-Bash
-docker ps
-El script está configurado para conectar por defecto al puerto 5432 con el usuario y contraseña odoo.
-
-2. Instalación de Dependencias
-Instala las librerías necesarias mediante pip:
-
-Bash
+### 2. Instalación de Dependencias
+Ejecute el siguiente comando en su terminal para instalar las librerías necesarias:
+```bash
 pip install pandas psycopg2-binary
-3. Preparación del Script
-El archivo importar.py utiliza un diccionario de configuración para las credenciales de la base de datos.
+3. Ejecución del Script
+El script importar.py realiza las siguientes acciones de forma automática:
 
-Se ha implementado la lectura del CSV con codificación latin1 para garantizar la integridad de tildes y caracteres especiales (como la "ñ").
+Lee el archivo listado.csv usando codificación latin1.
 
-El script incluye una sentencia CREATE TABLE IF NOT EXISTS para automatizar la creación de la tabla import_centros.
+Conecta con la base de datos postgres.
 
-4. Ejecución
-Ejecuta el script desde la terminal de VS Code:
+Crea la tabla import_centros si no existe previamente.
+
+Recorre el archivo e inserta los registros fila por fila.
+
+Realiza un commit() final para asegurar la persistencia de los datos.
+
+Para lanzarlo:
 
 Bash
 python importar.py
-📈 Tareas Realizadas
-[x] Conexión Robusta: Manejo de errores mediante bloques try/except.
+📊 Verificación de Resultados
+A continuación se adjunta la captura de pantalla que demuestra:
 
-[x] Tratamiento de Datos: Uso de Pandas para la carga eficiente del CSV.
+El mensaje de éxito en la terminal de VS Code.
 
-[x] Automatización SQL: Creación automática de tablas y mapeo de datos mediante iloc.
+La consulta SQL en pgAdmin mostrando los datos cargados en la tabla import_centros.
 
-[x] Integridad de Datos: Implementación de commit() al finalizar el bucle para asegurar la persistencia.
+La barra de tareas/reloj del sistema para verificar la autoría.
 
-🖼️ Verificación del Proceso
-A continuación se muestra la evidencia de la ejecución exitosa del script y la persistencia de los datos en PostgreSQL:
+AQUÍ DEBES PEGAR TU CAPTURA DE PANTALLA
 
-Nota: En la siguiente captura se observa la terminal con el mensaje de éxito y la consulta en pgAdmin, incluyendo la barra de tareas del sistema para validación de autoría.
+📂 Estructura del Proyecto
+importar.py: Código fuente del proceso ETL.
 
-📂 Estructura del Repositorio
-importar.py: Script principal documentado.
+listado.csv: Fuente de datos original.
 
-listado.csv: Archivo fuente con los datos de los centros educativos.
-
-README.md: Documentación del proyecto.
+README.md: Documentación del ejercicio.
