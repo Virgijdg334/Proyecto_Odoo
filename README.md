@@ -26,6 +26,7 @@ Asegúrese de que el entorno Docker esté corriendo. El script utiliza las crede
 Ejecute el siguiente comando en su terminal para instalar las librerías necesarias:
 ```bash
 pip install pandas psycopg2-binary
+```
 3. Ejecución del Script
 El script importar.py realiza las siguientes acciones de forma automática:
 
